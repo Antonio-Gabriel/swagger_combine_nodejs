@@ -11,7 +11,10 @@ const app = new express();
 
 app.use(express.json());
 app.use("/v1", router);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocsDev));
+
+const swaggerMerge = { ...swaggerDocsDev, ...swaggerDocsProd };
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerMerge));
 
 app.get("/terms", function (req, res) {
   return res.json({
