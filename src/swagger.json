@@ -1,1 +1,102 @@
-{}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Employee Register Docs",
+    "description": "Simples documentation for preview endpoins in app",
+    "termsOfService": "http://localhost:3333/terms",
+    "contact": {
+      "email": "antonio.gabriel@verzel.com.br"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/v1",
+      "description": "Employee Api"
+    }
+  ],
+  "paths": {
+    "/employees/register": {
+      "post": {
+        "summary": "Create a new employee",
+        "description": "Create a new employee",
+        "tags": ["Employees"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee"
+              },
+              "examples": {
+                "Employee": {
+                  "value": {
+                    "name": "Jonh Doe",
+                    "username": "JohnDoeDev",
+                    "email": "johndoe@verzel.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Employee Already Exists"
+          },
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/employees": {
+      "get": {
+        "summary": "Get all employees",
+        "description": "Get all employees",
+        "tags": ["Employees"],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Employee": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

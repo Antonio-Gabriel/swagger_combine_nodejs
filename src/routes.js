@@ -5,7 +5,7 @@ const router = Router();
 
 const storage = [];
 
-router.post("employees/register", function (req, res) {
+router.post("/employees/register", function (req, res) {
   const { name, username, email } = req.body;
 
   const employeeAlreadyExists = storage.find(
