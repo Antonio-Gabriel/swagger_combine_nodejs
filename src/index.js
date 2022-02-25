@@ -1,13 +1,17 @@
 const express = require("express");
 const { router } = require("./routes");
-const swaggerDocs = require("./swagger.json");
+
+// Development and Production Swagger Documentation
+const swaggerDocsProd = require("./swaggerProd.json");
+const swaggerDocsDev = require("./swagger.json");
+
 const swaggerUi = require("swagger-ui-express");
 
 const app = new express();
 
 app.use(express.json());
 app.use("/v1", router);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocsDev));
 
 app.get("/terms", function (req, res) {
   return res.json({
