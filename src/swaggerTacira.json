@@ -1,0 +1,2018 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NV3 API"
+  },
+  "host": "",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Authentication Operations"
+    },
+    {
+      "name": "Ticket",
+      "description": "Ticket Operations"
+    },
+    {
+      "name": "Service",
+      "description": "Service Operations"
+    },
+    {
+      "name": "Client",
+      "description": "Client Operations"
+    },
+    {
+      "name": "Instance",
+      "description": "Instance Operations"
+    }
+  ],
+  "schemes": ["http", "https"],
+  "securityDefinitions": {
+    "authorization": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/auth": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Login",
+        "description": "",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Auth Model"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Auth Response Model"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/Auth Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/tickets/{id}": {
+      "get": {
+        "tags": ["Ticket"],
+        "summary": "Get Ticket",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Ticket Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Ticket"],
+        "summary": "Update Ticket",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ticket Create Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Ticket Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Ticket"],
+        "summary": "Update Specific Fields of Ticket",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Ticket Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/tickets": {
+      "post": {
+        "tags": ["Ticket"],
+        "summary": "Create Ticket",
+        "description": "",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ticket Create Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Ticket Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/services/{id}": {
+      "get": {
+        "tags": ["Service"],
+        "summary": "Get Service",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Service Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/services": {
+      "get": {
+        "tags": ["Service"],
+        "summary": "List Services",
+        "description": "Possible sort parameters:\n\ncriticity (string)\nname (string)\ncount_open_tickets (string)\nservice_spec_name (string)\nlocation (string)\nclient_name (string)\ncontact_name (string)\ncontact_phone (string)\ncontact_email (string)\n\nPossible sort values:\n\n\"DESC\" (DESCENDANT)|\"ASC\" (ASCENDANT)\n\nPossible filter parameters:\n\ncriticity (list of strings)\nname (string)\ncount_open_tickets (boolean)\nservice_spec_name (string)\nlocation (string)\nclient_name (string)\ncontact_name (string)\ncontact_phone (string)\ncontact_email (string)",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "value": 1,
+            "description": "Actual page of pagination. (Default value: 1)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "value": 50,
+            "description": "List item limit. (Default value: 50)"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "object",
+            "description": "Ordenation parameter.",
+            "value": "{\"contact_name\":\"DESC\"}"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "object",
+            "description": "Filter parameters.",
+            "value": "{\"criticity\":[\"warning\", \"minor\"]}"
+          },
+          {
+            "name": "allServices",
+            "in": "query",
+            "type": "boolean",
+            "value": false,
+            "description": "Flag to get all services (enabled/disabled). (Default value: false)"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Service List Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Service"],
+        "summary": "Create Service",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Service Create Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Service Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Service"],
+        "summary": "Update Service",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "name of service",
+            "required": true
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Service Update Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Service Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/services/desactive": {
+      "patch": {
+        "tags": ["Service"],
+        "summary": "Desactive Service",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "name of service",
+            "required": true
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "service has been successfully disabled!"
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/services/active": {
+      "patch": {
+        "tags": ["Service"],
+        "summary": "active Service",
+        "parameters": [
+          {
+            "name": "service",
+            "in": "query",
+            "description": "name of service",
+            "required": true
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "service has been successfully activated!"
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/services/add_components/{id}": {
+      "post": {
+        "tags": ["Service"],
+        "summary": "Add components (services, instances) to another service",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Add Components services"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "service has been successfully disabled!"
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/clients": {
+      "get": {
+        "tags": ["Client"],
+        "summary": "List Client",
+        "description": "List Clients",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "the name of client"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "value": 1,
+            "description": "Actual page of pagination. (Default value: 1)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "value": 10,
+            "description": "List item limit. (Default value: 10)"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Client List Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/clients/{id}/tickets": {
+      "get": {
+        "tags": ["Client"],
+        "summary": "List Tickets from client",
+        "description": "List tickets from client",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "the id of client"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "value": 1,
+            "description": "Actual page of pagination. (Default value: 1)"
+          },
+          {
+            "name": "initialDate",
+            "in": "query",
+            "type": "date",
+            "value": "2021-12-17 00:00:00",
+            "description": "Initial date."
+          },
+          {
+            "name": "finalDate",
+            "in": "query",
+            "type": "date",
+            "value": "2022-01-12 00:00:00",
+            "description": "Final Date."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "value": 50,
+            "description": "List item limit. (Default value: 50)"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Tickets List Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/instances": {
+      "post": {
+        "tags": ["Instance"],
+        "summary": "Create Instance",
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Instance Create Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Instance Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Instance"],
+        "summary": "List Instance",
+        "description": "List Instances",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "the name of instance"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "value": 1,
+            "description": "Actual page of pagination. (Default value: 1)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "value": 10,
+            "description": "List item limit. (Default value: 10)"
+          },
+          {
+            "name": "allInstances",
+            "in": "query",
+            "type": "boolean",
+            "value": false,
+            "description": "Flag to get all instances (enabled/disabled). (Default value: false)"
+          },
+          {
+            "name": "exact",
+            "in": "query",
+            "type": "boolean",
+            "value": false,
+            "description": "Flag to get the exact name instance. (Default value: false)"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Instance List Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/instances/{id}": {
+      "patch": {
+        "tags": ["Instance"],
+        "summary": "Update Instance By instance_id",
+        "description": "Update Instance By instance_id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "the id of instance"
+          },
+          {
+            "name": "payload",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Instance Update Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Instance Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/instances/{id}/desactivate": {
+      "patch": {
+        "tags": ["Instance"],
+        "summary": "Desactivate Instance",
+        "description": "Desactivate Instance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "the id of instance",
+            "schema": {
+              "$ref": "#/definitions/Instance Create Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Instance Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    },
+    "/instances/{id}/activate": {
+      "patch": {
+        "tags": ["Instance"],
+        "summary": "Activate Instance",
+        "description": "Activate Instance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "the id of instance",
+            "schema": {
+              "$ref": "#/definitions/Instance Create Model"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "type": "string",
+            "value": "application/json",
+            "description": "Content-Type"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "description": "Authorization Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Instance Model"
+            }
+          },
+          "4xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          },
+          "5xx": {
+            "schema": {
+              "$ref": "#/definitions/Error Response Model"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Ticket Model": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "id": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "id": {
+          "type": "number",
+          "example": 111
+        },
+        "template": {
+          "type": "string",
+          "example": "fttx_massive|fttx_ponctual_customer"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2020-10-09T12:34:26.813"
+        },
+        "status": {
+          "type": "string",
+          "example": "closed|new|in_progress|resolved|clock_stop|monitoring|shutdown"
+        },
+        "criticity": {
+          "type": "string",
+          "example": "critical|major|minor|warning"
+        },
+        "service_id": {
+          "type": "number",
+          "example": 123
+        },
+        "custom_fields": {
+          "type": "object"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2020-10-09T12:40:25.997"
+        },
+        "closed_at": {
+          "type": "string",
+          "example": "2020-10-15T12:40:25.997"
+        }
+      },
+      "xml": {
+        "name": "Ticket Model"
+      }
+    },
+    "Ticket Create Model": {
+      "type": "object",
+      "properties": {
+        "template": {
+          "type": "string",
+          "example": "fttx_massive|fttx_ponctual_customer"
+        },
+        "status": {
+          "type": "string",
+          "example": "closed|new|in_progress|resolved|clock_stop|monitoring|shutdown"
+        },
+        "criticity": {
+          "type": "string",
+          "example": "critical|major|minor|warning"
+        },
+        "service_id": {
+          "type": "number",
+          "example": 123
+        },
+        "custom_fields": {
+          "type": "object"
+        }
+      },
+      "xml": {
+        "name": "Ticket Create Model"
+      }
+    },
+    "Error Response Model": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "Description"
+        }
+      }
+    },
+    "Auth Model": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "user"
+        },
+        "password": {
+          "type": "string",
+          "example": "password"
+        }
+      }
+    },
+    "Auth Response Model": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "example": "c369a7faea2a6d9ayadc8545fef7cf3c4af173b4"
+        }
+      }
+    },
+    "Auth Error Response Model": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "Unauthorized"
+        }
+      }
+    },
+    "Service Create Model": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "service_spec_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "client_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "location": {
+          "type": "string",
+          "example": "N/A"
+        },
+        "critical_element": {
+          "type": "boolean",
+          "example": false
+        },
+        "description": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        },
+        "custom_fields": {
+          "type": "object",
+          "example": {
+            "Owner": "FOO",
+            "Users": [
+              {
+                "Name": "User1",
+                "isVip": true,
+                "Value": 14.5
+              },
+              {
+                "Name": "User2",
+                "isVip": false,
+                "Value": 14.5
+              }
+            ]
+          }
+        },
+        "servicecomponent_set": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        },
+        "resourcecomponent_set": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Service Model"
+      }
+    },
+    "Service Update Model": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "client_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "location": {
+          "type": "string",
+          "example": "N/A"
+        },
+        "critical_element": {
+          "type": "boolean",
+          "example": false
+        },
+        "description": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        },
+        "custom_fields": {
+          "type": "object",
+          "example": {
+            "Owner": "BAR",
+            "Users": [
+              {
+                "Name": "User1",
+                "isVip": false,
+                "Value": 4
+              },
+              {
+                "Name": "User2",
+                "isVip": true,
+                "Value": 200
+              },
+              {
+                "Name": "Example",
+                "isVip": false,
+                "Value": 0
+              }
+            ]
+          }
+        },
+        "servicecomponent_set": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        },
+        "resourcecomponent_set": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Service Model"
+      }
+    },
+    "Service Model": {
+      "type": "object",
+      "properties": {
+        "total_open_tickets": {
+          "type": "number",
+          "example": 111
+        },
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "service_spec": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "id": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "is_active": {
+          "type": "boolean",
+          "example": true
+        },
+        "client": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "id": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "location": {
+          "type": "string",
+          "example": "N/A"
+        },
+        "critical_element": {
+          "type": "boolean",
+          "example": false
+        },
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "description": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "criticity": {
+          "type": "string",
+          "example": "critical|major|minor|warning|clear"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        },
+        "custom_fields": {
+          "type": "object"
+        },
+        "servicecomponent_set": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        },
+        "resourcecomponent_set": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Service Model"
+      }
+    },
+    "Service Version List Model": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "criticity": {
+          "type": "string",
+          "example": "critical|major|minor|warning|clear"
+        },
+        "service_spec": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "id": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "client": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "id": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "location": {
+          "type": "string",
+          "example": "N/A"
+        },
+        "count_open_tickets": {
+          "type": "number",
+          "example": 5
+        },
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Service Version List Model"
+      }
+    },
+    "Service List Model": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "number",
+          "example": 100
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Service Version List Model"
+          }
+        }
+      },
+      "xml": {
+        "name": "Service List Model"
+      }
+    },
+    "Client List Model": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "string",
+          "example": true
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 1
+              },
+              "name": {
+                "type": "string",
+                "example": "clientname"
+              },
+              "corporate_name": {
+                "type": "string",
+                "example": "corporatename"
+              },
+              "cnpj": {
+                "type": "string",
+                "example": "xxx.xxxx"
+              },
+              "operating_phone": {
+                "type": "string",
+                "example": "0000-000"
+              },
+              "operating_contact": {
+                "type": "string",
+                "example": "FOO"
+              },
+              "business_phone": {
+                "type": "string",
+                "example": "1111-1111"
+              },
+              "business_contact": {
+                "type": "string",
+                "example": "BAR"
+              },
+              "address": {
+                "type": "string",
+                "example": "Street FOO"
+              },
+              "state_registration": {
+                "type": "string",
+                "example": ""
+              },
+              "dashboard_set": {
+                "type": "array",
+                "example": []
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Service List Model"
+      }
+    },
+    "Tickets List Model": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "id": {
+          "type": "integer",
+          "example": 12
+        },
+        "tickets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 1
+              },
+              "created_at": {
+                "type": "string",
+                "example": "2021-12-17T14:31:50.587"
+              },
+              "template": {
+                "type": "string",
+                "example": "xxxxx-xxxxxx-x"
+              },
+              "status": {
+                "type": "string",
+                "example": "xxxxx"
+              },
+              "faultDescription": {
+                "type": "string",
+                "example": null
+              },
+              "services": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "id": 44
+                  },
+                  {
+                    "id": 2
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Tickets List Model"
+      }
+    },
+    "Instance Model": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "custom_name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        },
+        "locality": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "tags": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "critical_element": {
+          "type": "boolean",
+          "example": false
+        },
+        "custom_fields": {
+          "type": "object"
+        },
+        "config_group_id": {
+          "type": "number",
+          "example": 1
+        },
+        "instance_type_id": {
+          "type": "number",
+          "example": 1
+        },
+        "instance_parent_id": {
+          "type": "number",
+          "example": 1
+        },
+        "client_id": {
+          "type": "number",
+          "example": 1
+        },
+        "latitude": {
+          "type": "string",
+          "example": "0000-000"
+        },
+        "longitude": {
+          "type": "string",
+          "example": "0000-000"
+        },
+        "is_active": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "xml": {
+        "name": "Instance Model"
+      }
+    },
+    "Instance Create Model": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "custom_name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        },
+        "locality": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "tags": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "critical_element": {
+          "type": "boolean",
+          "example": false
+        },
+        "custom_fields": {
+          "type": "object"
+        },
+        "config_group_id": {
+          "type": "number",
+          "example": 1
+        },
+        "instance_type_id": {
+          "type": "number",
+          "example": 1
+        },
+        "instance_parent_id": {
+          "type": "number",
+          "example": 1
+        },
+        "client_id": {
+          "type": "number",
+          "example": 1
+        },
+        "latitude": {
+          "type": "number",
+          "example": 90
+        },
+        "longitude": {
+          "type": "number",
+          "example": 28
+        },
+        "is_active": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "xml": {
+        "name": "Instance Model"
+      }
+    },
+    "Instance Update Model": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "custom_name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        },
+        "locality": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "tags": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "critical_element": {
+          "type": "boolean",
+          "example": false
+        },
+        "custom_fields": {
+          "type": "object"
+        },
+        "config_group_id": {
+          "type": "number",
+          "example": 1
+        },
+        "instance_parent_id": {
+          "type": "number",
+          "example": 1
+        },
+        "client_id": {
+          "type": "number",
+          "example": 1
+        },
+        "latitude": {
+          "type": "number",
+          "example": 90
+        },
+        "longitude": {
+          "type": "number",
+          "example": 28
+        },
+        "is_active": {
+          "type": "boolean",
+          "example": true
+        }
+      },
+      "xml": {
+        "name": "Instance Model"
+      }
+    },
+    "Instance Version List Model": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "custom_name": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "phone": {
+              "type": "string",
+              "example": "xxx"
+            },
+            "name": {
+              "type": "string",
+              "example": "xxx"
+            }
+          }
+        },
+        "locality": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "tags": {
+          "type": "string",
+          "example": "xxx"
+        },
+        "critical_element": {
+          "type": "boolean",
+          "example": false
+        },
+        "custom_fields": {
+          "type": "object"
+        },
+        "config_group_id": {
+          "type": "number",
+          "example": 1
+        },
+        "instance_type_id": {
+          "type": "number",
+          "example": 1
+        },
+        "instance_parent_id": {
+          "type": "number",
+          "example": 1
+        },
+        "client_id": {
+          "type": "number",
+          "example": 1
+        },
+        "latitude": {
+          "type": "string",
+          "example": "0000-000"
+        },
+        "longitude": {
+          "type": "string",
+          "example": "0000-000"
+        },
+        "is_active": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    },
+    "Instance List Model": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "number",
+          "example": 1
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Instance Version List Model"
+          }
+        },
+        "xml": {
+          "name": "Instance List Model"
+        }
+      }
+    },
+    "Add Components services": {
+      "type": "object",
+      "properties": {
+        "service_components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        },
+        "resource_components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 1
+              },
+              "role": {
+                "type": "string",
+                "example": "rolename"
+              }
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Add Components services"
+      }
+    }
+  }
+}
