@@ -35,7 +35,7 @@ router.get("/employees", function (req, res) {
 });
 
 router.get("/employees/:id", function (req, res) {
-  const { id } = req.query;
+  const { id } = req.params;
   const employee = storage.find((employee) => employee.id === id);
 
   return res.json(employee);
