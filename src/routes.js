@@ -41,10 +41,4 @@ router.get("/employees/:id", function (req, res) {
   return res.json(employee);
 });
 
-router.get("/terms", function (req, res) {
-  return res.json({
-    message: "Terms of Service",
-  });
-});
-
 module.exports = { router };
