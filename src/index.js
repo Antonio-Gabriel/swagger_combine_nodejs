@@ -5,9 +5,6 @@ const { router } = require("./routes");
 const swaggerDocsProd = require("./swaggerProd.json");
 const swaggerDocsDev = require("./swagger.json");
 
-const swaggerTacira = require("./swaggerTacira.json");
-const swaggerAtc = require("./swaggerAtc.json");
-
 const swaggerUi = require("swagger-ui-express");
 const _ = require("lodash");
 
@@ -16,7 +13,7 @@ const app = new express();
 app.use(express.json());
 app.use("/v1", router);
 
-const swaggerMerge = _.merge(swaggerTacira, swaggerAtc);
+const swaggerMerge = _.merge(swaggerDocsProd, swaggerDocsDev);
 console.log(swaggerMerge);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerMerge));
